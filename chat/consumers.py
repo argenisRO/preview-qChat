@@ -176,9 +176,9 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
         fetched_message = await create_message(self.scope['user'] , message, chat_room)
 
         try:
-            profile_url = fetched_message.user.profile.profile_pic.url
+            profile_pic = fetched_message.user.profile.profile_pic
         except ValueError:
-            profile_url = staticfiles_storage.url('qchat/img/default.png')
+            profile_pic = staticfiles_storage.url('qchat/img/default.png')
 
         # Broadcast a message to all the members in the Chat Room
         await self.channel_layer.group_send(chat_room.group_name,{
@@ -186,7 +186,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             "id":                   chatroom_id,
             "username":             fetched_message.user.username,
             "message":              fetched_message.message,
-            "profile_img":          profile_url,
+            "profile_img":          profile_pic.url,
             "time":                 fetched_message.date_written.strftime("%I:%M %p")
         })
 

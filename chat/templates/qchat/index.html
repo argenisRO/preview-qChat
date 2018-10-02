@@ -10,7 +10,7 @@
                 <ul room-id="{{ chatroom.id }}" class="list-group list-group-flush chatroom-messages">
                     {% for message in chatroom.messages %}
                     <li class='list-group-item py-2 message-item'>
-                        <img class="align-self-end mr-1 chat-image" src="{% if message.user.profile.profile_pic.url %} {{ message.user.profile.profile_pic.url }} {% else %} {{ default }} {% endif %}" alt="{{ message.user }}'s Profile Image">
+                        <img class="align-self-end mr-1 chat-image" src="{% if message.user.profile.profile_pic %} {{ message.user.profile.profile_pic.url }} {% else %} {{ default }} {% endif %}" alt="{{ message.user }}'s Profile Image">
                         <span class="profile-link">{{ message.user }}</span>: {{ message.message }}
                         <span class='float-right font-italic'>
                             <small>{{ message.date_written|date:"f A" }}</small>
