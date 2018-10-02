@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
+from django.contrib.staticfiles.storage import staticfiles_storage
 from .models import Messages, ChatRoom, ChatRoom_Users
 
 states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA", 
@@ -26,7 +27,8 @@ def index(request):
     
     context = {
         "chatroom_information"  : chatroom_info.values(),
-        "states"                : states
+        "states"                : states,
+        "default"               : staticfiles_storage.url('qchat/img/default.png')
     }
 
     return render(request, "qchat/index.html", context)
