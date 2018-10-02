@@ -1,3 +1,5 @@
+from .base import *
+
 from os import path, environ
 from dj_database_url import config as dj_config
 import django_heroku
@@ -9,22 +11,6 @@ SECRET_KEY = environ.get('SECURE_KEY', None)
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
 DATABASES = {
     'default': dj_config(default=environ.get('DATABASE_URL', None))
