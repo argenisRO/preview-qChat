@@ -1,5 +1,5 @@
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
-from channels.auth import login, logout, get_user
+from channels.auth import login, logout
 from channels.db import database_sync_to_async
 from .utils import create_message, check_user, fetch_room, connection_list, register_user
 

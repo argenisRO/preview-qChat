@@ -1,10 +1,9 @@
 from channels.db import database_sync_to_async
 from django.db.models import Q
-from django.contrib.auth.models import User, UserManager
-from django.contrib.auth.hashers import check_password, make_password
-from django.db import close_old_connections
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password
 
-from .models import Messages, ChatRoom, ChatRoom_Users, Profiles
+from .models import Messages, ChatRoom, ChatRoom_Users
 
 # Database Interaction Functions
 @database_sync_to_async

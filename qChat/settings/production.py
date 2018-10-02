@@ -1,6 +1,5 @@
 from .base import *
 
-from os import path, environ
 from dj_database_url import config as dj_config
 import django_heroku
 

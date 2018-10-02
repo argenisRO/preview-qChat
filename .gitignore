@@ -6,4 +6,3 @@ __pycache__
 *.pyc
 /qChat/settings/local.py
 media_dev
-staticfiles/.*

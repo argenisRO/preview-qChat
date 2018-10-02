@@ -1,5 +1,4 @@
-from .base import *
-from os import path
+from os import path, environ
 
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
@@ -75,11 +74,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True

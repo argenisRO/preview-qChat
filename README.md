@@ -11,7 +11,7 @@ A real time chat application written in Python on the Django Framework.
 ## Databases
 
 * [PostgreSQL](https://www.postgresql.org/) (Heroku) - The SQL database used for all user data
-* [Redis](https://github.com/django/channels_redis) - Backend database to store chatroom information
+* [Redis](https://github.com/django/channels_redis) (Heroku) - Backend database to store chatroom information
 
 All the extra requirements can be found in the `requirements.txt` file
 
