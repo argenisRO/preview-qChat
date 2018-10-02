@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     socket.onerror = event => {
-        call_alert("An Internal Server Error Occurred ");
+        call_alert("An Internal Server Error Occurred");
     }
 
     socket.onmessage = event => {
@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }));
                     });
                 }
-                
             }
         }
 
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (context.message) {
-            let message_group = $("ul.chatroom[room-id='" + context.room + "']");
+            let message_group = $("ul.chatroom-messages[room-id='" + context.room + "']");
             let new_message_li;
 
             switch (context.message_type) {
@@ -94,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             message_group.append(new_message_li);
+            message_group.animate({scrollTop: message_group[0].scrollHeight}, "slow");
         }
 
         if (context.registration) {
@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $(".chat-link").click(function () {
         let chatroom_id = $(this).attr("room-id");
+        let chatroom_messages = $("ul.chatroom-messages[room-id='" + chatroom_id + "']");
         let chatroom_title = $(`.chatroom[room-id='${chatroom_id}']`).find("h1").text();
 
         if ($(this).hasClass("joined")) {
@@ -136,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "room_id"    : chatroom_id
             }));
         }
+        chatroom_messages.animate({scrollTop: chatroom_messages[0].scrollHeight}, "slow");
     });
 
     // Handles all the Close Buttons in Modal Boxes
@@ -163,19 +165,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handles Messages Sent
     $(".channel-message-send").click(function () {
         let chatroom_id = $(this).attr('room-id');
-        let chatroom_message = $(`input[room-id='${chatroom_id}']`).val();
+        let chatroom_message = $(`input[room-id='${chatroom_id}']`);
         let chat_connected = $(`.chat-link[room-id='${chatroom_id}']`).hasClass("joined");
         
         if (chat_connected) {
             socket.send(JSON.stringify({
                 "operation"  : "new_message",
                 "room_id"    : chatroom_id,
-                "message"    : chatroom_message
+                "message"    : chatroom_message.val()
             }));
+            chatroom_message.val('');
         } else {
             call_alert("You're not connected to that channel. Join a channel at the top left")
         }
-        
     });
 
     $("#log-in-box").find("#log-in").click(function () {
