@@ -1,0 +1,9 @@
+__pycache__
+.vscode
+*.scss
+*.sass-cache
+*.sqlite3
+*.pyc
+/qChat/settings/local.py
+media_dev
+staticfiles/.*

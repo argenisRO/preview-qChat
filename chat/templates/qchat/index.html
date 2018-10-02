@@ -1,0 +1,45 @@
+{% extends "qchat/layout.html" %}
+
+{% block content %}
+{% for chatroom in chatroom_information %}
+    <div room-id="{{ chatroom.id }}" class="jumbotron chatroom">
+        <h1 class="display col-xs-6">{{ chatroom.title }}</h1>
+
+        <div class="row">     
+            <div room-id="{{ chatroom.id }}" class="col-sm-9 chatroom">
+                <ul room-id="{{ chatroom.id }}" class="list-group list-group-flush chatroom">
+                    <!-- {% for message in chatroom.messages %}
+                    <li class="list-group-item message-item">{{ message.user }}: {{ message.message }} 
+                        <span class="float-right font-italic">
+                            <small>{{ message.date_written|date:"f A" }}</small>
+                        </span> 
+                    </li>
+                    {% endfor %} -->
+                </ul>
+                <form onsubmit="event.preventDefault();">
+                    <div class="form-row align-items-center chatroom-message">
+                        <div class="col-auto">
+                            <input room-id="{{ chatroom.id }}" class="form-control channel-message" type="text"/>
+                        </div>
+                        <div class="col-auto">
+                            <button room-id="{{ chatroom.id }}" class="form-control channel-message-send" type="submit">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="content-section col-xs-2 position-relative">
+                <h4>Connected Members</h4>
+                <p class='text-muted'>sign in to chat</p>
+                <ul room-id="{{ chatroom.id }}" class="list-group chatroom-members">
+
+                    {% for member in chatroom.connected %}
+                        <li name="{{ member.user.username }}" room-id="{{ chatroom.id }}" class="list-group-item">{{ member.user.username }}</li>
+                    {% endfor %}
+                </ul>   
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
+

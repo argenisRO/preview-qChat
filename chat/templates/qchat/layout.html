@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'qchat/img/apple-touch-icon-57x57.png' %} " />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'qchat/img/apple-touch-icon-114x114.png' %}" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'qchat/img/apple-touch-icon-72x72.png' %}" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'qchat/img/apple-touch-icon-144x144.png' %}" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{% static 'qchat/img/apple-touch-icon-60x60.png' %}" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'qchat/img/apple-touch-icon-120x120.png' %}" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'qchat/img/apple-touch-icon-76x76.png' %}" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'qchat/img/apple-touch-icon-152x152.png' %}" />
+        <link rel="icon" type="image/png" href="{% static 'qchat/img/favicon-196x196.png' %}" sizes="196x196" />
+        <link rel="icon" type="image/png" href="{% static 'qchat/img/favicon-96x96.png' %}" sizes="96x96" />
+        <link rel="icon" type="image/png" href="{% static 'qchat/img/favicon-32x32.png' %}" sizes="32x32" />
+        <link rel="icon" type="image/png" href="{% static 'qchat/img/favicon-16x16.png' %}" sizes="16x16" />
+        <link rel="icon" type="image/png" href="{% static 'qchat/img/favicon-128.png' %}" sizes="128x128" />
+        <meta name="application-name" content="&nbsp;"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="{% static 'qchat/img/mstile-144x144.png' %}" />
+        <meta name="msapplication-square70x70logo" content="{% static 'qchat/img/mstile-70x70.png' %}" />
+        <meta name="msapplication-square150x150logo" content="{% static 'qchat/img/mstile-150x150.png' %}" />
+        <meta name="msapplication-wide310x150logo" content="{% static 'qchat/img/mstile-310x150.png' %}" />
+        <meta name="msapplication-square310x310logo" content="{% static 'qchat/img/mstile-310x310.png' %}" />
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'qchat/styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'plugins/snackbar/snackbar.css' %}" />
+        <title>qChat</title>
+    </head>
+
+    
+    <body>
+    <div class="container">
+        <div id="Welcome_Message" class="modal-box container jumbotron position-absolute">
+            <h1 class="display-4">Welcome to qChat (Alpha)!</h1>
+            <p class="lead">This is an early version of qChat. If you have any feedback please let me know!</p>
+            <hr class="my-4">
+            <p>Recent Changes</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">fixed welcome-box scaling</li>
+                <li class="list-group-item">added fade feature to welcome message</li>
+                <li class="list-group-item">Initialized the app</li>
+            </ul>
+            <p class="lead">
+                <button id="got_it" class="btn btn-primary btn-lg" style="margin-top: 10px">Got it!</button>
+                <div class="form-check">
+                    <input id="dont-show-again" type="checkbox" class="form-check-input">
+                    <label type="radio" class="form-check-label login-info"><small>dont show again</small></label>
+                </div>
+            </p>
+        </div>
+
+        <form onsubmit="event.preventDefault();">
+            <div id="log-in-box" class="modal-box container jumbotron position-absolute col-lg-3 py-5 authentication">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p id="log-title" class="display-4 text-center">Log In</p>
+                <hr class="my-4">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input id="user-name" type="text" class="form-control login-info" placeholder="Enter email or username">
+                    <small id="login_info" class="form-text text-muted">Your information is safe with us!</small>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input id="user-password" type="password" class="form-control login-info" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <input id="keep-on" type="checkbox" class="form-check-input">
+                    <label type="radio" class="form-check-label login-info">Keep me logged in</label>
+                </div>
+                
+                <button id="log-in" type="submit" class="btn btn-primary my-1">Log In</button>
+                <button id="register-user" type="button" class="btn btn-sm btn-success my-1">Register</button>
+            </div>
+        </form>
+
+        <div id="register-box" class="modal-box jumbotron position-absolute authentication">
+                
+            <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p id="register-title" class="display-4 text-center">Register</p>
+            <hr class="my-4">
+            <div class="lr-slide">
+                <form onsubmit="event.preventDefault();">
+                    <div class="register-slide">
+                        <div class="form-row">   
+                            <div class="form-group col-md-6">
+                                <label for="register-email">Email</label>
+                                <input type="email" class="form-control" id="register-email" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="register-username">Username</label>
+                                <input type="text" class="form-control" id="register-username" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" class="form-control" id="register-password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password2">Confirm Password</label>
+                            <input type="password" class="form-control" id="register-password2" placeholder="Confirm Password">
+                        </div>
+                        <div class="form-row">    
+                            <div class="form-group col-md-6">
+                                <label for="register-fname">First Name</label>
+                                <input type="text" class="form-control" id="register-fname" placeholder="Your first name...">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="register-lname">Last Name</label>
+                                <input type="text" class="form-control" id="register-lname" placeholder="Your last name...">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="register-city">City</label>
+                                <input type="text" class="form-control" id="register-city">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">State</label>
+                                <select id="register-state" class="form-control">
+                                    <option disabled selected value>Choose...</option>
+                                    {% for state in states %}
+                                        <option>{{ state }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="register-zipcode">Zip</label>
+                                <input type="text" class="form-control" id="register-zipcode">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2" id="register-signup">Sign Up</button>
+                        <button type="button" class="btn btn-sm btn-primary my-1" id="register-login">Log in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        <div class="container main-body">
+            <!-- Navigation Bar -->
+            <header class="site-header">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarToggle">
+                            <div class="navbar-nav mr-auto">
+                                {% for chatroom in chatroom_information %}
+                                    <a room-id="{{ chatroom.id }}" class="nav-item nav-link chat-link">{{ chatroom.title }}</a>
+                                {% endfor %}
+                            </div>
+                            <!-- Navbar Right Side -->
+                            <div id="quick-buttons" class="navbar-nav">
+                                <!-- <a class="nav-item nav-link" href="#">Login</a>
+                                <a class="nav-item nav-link" href="#">Register</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            {% block content %}{% endblock %}
+            <img class="feedback-icon" src="{% static 'qchat/img/feedback.png' %}"/>
+            <div id="feedback-box" class="jumbotron">
+                <form onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <label for="feedback-box-message">Please provide feedback</label>
+                        <textarea class="form-control" id="feedback-box-message" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+        </div>
+            
+        
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        
+        <script src="{% static  'plugins/rwebsocket/reconnectingwebsocket.js' %}"></script>
+        <script src="{% static  'plugins/snackbar/snackbar.min.js' %}"></script>
+        <script src="{% static  'qchat/main.js' %}"></script>
+    </body>
+</html>
+
+
