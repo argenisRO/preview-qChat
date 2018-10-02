@@ -1,10 +1,11 @@
 from .base import *
 
-from os import path, environ
+from os import path, environ, chdir
 from dj_database_url import config as dj_config
 import django_heroku
 
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
+PROJECT_DIR = path.abspath(path.join(path.dirname( __file__ ), '..', '..'))
 
 SECRET_KEY = environ.get('SECURE_KEY', None)
 
@@ -37,7 +38,7 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 # Static Media Settings
 STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
 MEDIA_URL = f'{STATIC_URL}media/'
-STATICFILES_DIRS = (path.join(BASE_DIR, 'chat/static'),)
+STATICFILES_DIRS = (path.join(PROJECT_DIR, 'chat/static'),)
 STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
 ADMIN_MEDIA_PREFIX = f'{STATIC_URL}admin/'
 STATICFILES_FINDERS = (
