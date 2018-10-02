@@ -1,5 +1,6 @@
 from django.contrib.staticfiles.storage import staticfiles_storage
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
+from django.contrib.staticfiles.storage import staticfiles_storage
 from channels.auth import login, logout
 from channels.db import database_sync_to_async
 from .utils import create_message, check_user, fetch_room, connection_list, register_user
