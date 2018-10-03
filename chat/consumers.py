@@ -60,7 +60,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             authentication = False
             
             # Log the user in if their registration was successful
-            if user_registered is not None:
+            if user is not None:
                 authentication = True
 
                 await login(self.scope, user)
