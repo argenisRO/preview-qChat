@@ -176,7 +176,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
         fetched_message = await create_message(self.scope['user'] , message, chat_room)
 
         try:
-            profile_pic = fetched_message.user.profile.profile_pic
+            profile_pic = fetched_message.user.profile.profile_pic.url
         except ValueError:
             profile_pic = staticfiles_storage.url('qchat/img/default.png')
 
@@ -186,7 +186,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             "id":                   chatroom_id,
             "username":             fetched_message.user.username,
             "message":              fetched_message.message,
-            "profile_img":          profile_pic.url,
+            "profile_img":          profile_pic,
             "time":                 fetched_message.date_written.strftime("%I:%M %p")
         })
 
