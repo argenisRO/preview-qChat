@@ -1,4 +1,6 @@
+from django.contrib.staticfiles.storage import staticfiles_storage
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
+from django.contrib.staticfiles.storage import staticfiles_storage
 from channels.auth import login, logout
 from channels.db import database_sync_to_async
 from .utils import create_message, check_user, fetch_room, connection_list, register_user
@@ -58,7 +60,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             authentication = False
             
             # Log the user in if their registration was successful
-            if user_registered is not None:
+            if user is not None:
                 authentication = True
 
                 await login(self.scope, user)
@@ -92,7 +94,6 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             self.close()
         else:
             pass
-
 
 
     async def disconnect(self, code):
@@ -175,9 +176,9 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
         fetched_message = await create_message(self.scope['user'] , message, chat_room)
 
         try:
-            profile_url = fetched_message.user.profile.profile_pic.url
+            profile_pic = fetched_message.user.profile.profile_pic.url
         except ValueError:
-            profile_url = '/static/qchat/img/default.png'
+            profile_pic = staticfiles_storage.url('qchat/img/default.png')
 
         # Broadcast a message to all the members in the Chat Room
         await self.channel_layer.group_send(chat_room.group_name,{
@@ -185,7 +186,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             "id":                   chatroom_id,
             "username":             fetched_message.user.username,
             "message":              fetched_message.message,
-            "profile_img":          profile_url,
+            "profile_img":          profile_pic,
             "time":                 fetched_message.date_written.strftime("%I:%M %p")
         })
 
