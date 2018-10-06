@@ -2,24 +2,27 @@ version: '3'
 
 services:
   db:
+    restart: always
     image: postgres
   redis:
+    restart: always
     image: redis:latest
   migration:
     build: .
     command: python3 manage.py migrate
-    volumes:
-      - .:/usr/src/app
-    depends_on:
-      - db
-  web:
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/usr/src/app
-    ports:
-      - "8000:8000"
     depends_on:
       - db
       - redis
+  web:
+    restart: always
+    build: .
+    environment:
+      DB_HOST: db
+      REDIS_HOST: redis
+    command: ["./wait-for-it.sh", "db:5432", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+    ports:
+      - "8000:8000"
+    depends_on:
       - migration
+      - db
+      - redis

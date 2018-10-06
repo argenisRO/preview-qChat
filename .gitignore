@@ -4,5 +4,4 @@ __pycache__
 *.sass-cache
 *.sqlite3
 *.pyc
-/qChat/settings/local.py
-media_dev
+env

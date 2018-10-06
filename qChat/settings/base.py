@@ -1,8 +1,7 @@
 from os import path, environ
 
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
-
-ALLOWED_HOSTS = []
+PROJECT_DIR = path.abspath(path.join(path.dirname( __file__ ), '..', '..'))
 
 INSTALLED_APPS = [
     'django.contrib.admin',

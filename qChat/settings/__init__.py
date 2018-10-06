@@ -1,4 +1,7 @@
-try:
+from os import environ
+production = environ.get('PRODUCTION', 'False')
+
+if production == 'False':
     from .local import *
-except:
+else:
     from .production import *

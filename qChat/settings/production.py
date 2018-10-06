@@ -3,9 +3,6 @@ from .base import *
 from dj_database_url import config as dj_config
 import django_heroku
 
-BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
-PROJECT_DIR = path.abspath(path.join(path.dirname( __file__ ), '..', '..'))
-
 SECRET_KEY = environ.get('SECURE_KEY', None)
 
 DEBUG = False

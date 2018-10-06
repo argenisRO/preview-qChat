@@ -3,5 +3,14 @@ python:
   - 3.6
 install:
   - pip install -r requirements.txt
+before_script:
+  - python manage.py migrate
 script:
   - python manage.py test chat.tests
+services:
+  - postgresql
+  - redis-server
+env:
+  DB_HOST: db
+  REDIS_HOST: redis
+  PRODUCTION: "False"
