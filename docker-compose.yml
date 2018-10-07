@@ -9,17 +9,15 @@ services:
     image: redis:latest
   migration:
     build: .
-    command: python3 manage.py migrate
+    # command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python3 manage.py migrate'
+    command: ["./wait-for-it.sh", "db:5432", "--", "python3", "manage.py", "migrate"]
     depends_on:
       - db
       - redis
   web:
     restart: always
     build: .
-    environment:
-      DB_HOST: db
-      REDIS_HOST: redis
-    command: ["./wait-for-it.sh", "db:5432", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+    command: python3 manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
     depends_on:

@@ -4,7 +4,7 @@ python:
 install:
   - pip install -r requirements.txt
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database qChat_test;' -U postgres
   - python manage.py migrate
 script:
   - python manage.py test chat.tests
@@ -12,6 +12,5 @@ services:
   - postgresql
   - redis-server
 env:
-  DB_HOST: db
   REDIS_HOST: redis
   PRODUCTION: "False"
