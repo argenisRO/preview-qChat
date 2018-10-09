@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# If running development on Windows/WSL
+# Place this script along side chromedriver.exe in your $PATH
+chromedriver.exe "$@"
