@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     socket.onmessage = event => {
         let context = JSON.parse(event.data);
-        console.log(context);
 
         if (context.error) {
             call_alert(`Error Retrieving Data`);

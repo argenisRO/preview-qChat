@@ -1,9 +1,10 @@
 from .base import *
 from sys import argv
+from secrets import token_hex
 
 PROJECT_DIR = path.abspath(path.join(path.dirname( __file__ ), '..', 'chat'))
 
-SECRET_KEY = 'j5cr7_3=7z*&6he4m3z@o&11^k2&6%3(37uso9q+-1)87^q1yk'
+SECRET_KEY = token_hex(20)
 
 DEBUG = True
 
