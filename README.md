@@ -7,7 +7,7 @@ A real time chat application written in Python on the Django Framework.
 * [Django](https://www.djangoproject.com/) - The framework used for the project
 * [Django-Channels](https://channels.readthedocs.io/en/latest/) - An extension for the Django Framework
 * [Heroku](https://heroku.com/) - FREE web hosting site used for this project
-* [Selenium] (https://seleniumhq.org/) - Browser Automation used for testing this project
+* [Selenium](https://seleniumhq.org/) - Browser Automation used for testing this project
 
 ## Databases
 
