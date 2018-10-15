@@ -1,7 +1,6 @@
 from .base import *
 
 from dj_database_url import config as dj_config
-import django_heroku
 
 SECRET_KEY = environ.get('SECURE_KEY', None)
 
@@ -43,5 +42,3 @@ MEDIA_URL = f'{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 DEFAULT_FILE_STORAGE = 'storages_backend.MediaStorage'
 
 ADMIN_MEDIA_PREFIX = f'{STATIC_URL}admin/'
-
-django_heroku.settings(locals())

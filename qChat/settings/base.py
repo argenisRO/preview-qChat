@@ -12,8 +12,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chat.apps.ChatConfig',
     'channels',
-    'storages',
-    'storages_backend'
+    'storages'
 ]
 
 MIDDLEWARE = [
