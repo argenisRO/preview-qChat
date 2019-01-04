@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import { withStyles } from '@material-ui/core/styles'
 
+import friendsBar from './test'
+
 const styles = theme => ({
     menuBar: {
         background: '#343A40',
@@ -23,19 +25,23 @@ class Root extends Component {
     render() {
         const { classes } = this.props
         return (
-            <AppBar position="relative" color="primary" style={{ width: '100%' }}>
-                <Toolbar variant="dense" className={classes.menuBar}>
-                    {/* Sidebar Menu */}
-                    <IconButton aria-label="Chatrooms Menu">
-                        <img src={Sidebar_Icon} alt="Sidebar Icon" />
-                    </IconButton>
+            <React.Fragment>
+                <AppBar position="relative" color="primary">
+                    <Toolbar variant="dense" className={classes.menuBar}>
+                        {/* Sidebar Menu */}
+                        <IconButton aria-label="Chatrooms Menu">
+                            <img src={Sidebar_Icon} alt="Sidebar Icon" />
+                        </IconButton>
 
-                    {/* Site Title */}
-                    <Typography variant="h6" color="inherit">
-                        qChat
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+                        {/* Site Title */}
+                        <Typography variant="h6" color="inherit">
+                            qChat
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+
+                <friendsBar />
+            </React.Fragment>
         )
     }
 }
