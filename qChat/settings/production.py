@@ -1,48 +1,61 @@
-from .base import *
+from os import path, environ
+from dj_database_url import config as db_config
 
-from dj_database_url import config as dj_config
-import django_heroku
-
-BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
-PROJECT_DIR = path.abspath(path.join(path.dirname( __file__ ), '..', '..'))
-
-SECRET_KEY = environ.get('SECURE_KEY', None)
+BASE_DIR = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+SECRET_KEY = environ.get('SECURE_KEY')
+
+ALLOWED_HOSTS = ['.herokuapp.com', 'https://q-adventures.herokuapp.com']
+
+CORS_ORIGIN_WHITELIST = (
+    'q-adventures.herokuapp.com',
+)
 
 DATABASES = {
-    'default': dj_config(default=environ.get('DATABASE_URL', None))
+    'default': db_config(default=environ.get('DATABASE_URL'))
 }
 
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [environ.get('REDIS_URL', None)],
+            "hosts": [environ.get('REDIS_URL')],
         },
     },
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'knox.auth.TokenAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}
+
 # S3 Storage Settings
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID', None)
-AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY', None)
-AWS_STORAGE_BUCKET_NAME = environ.get('AWS_STORAGE_BUCKET_NAME', None)
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=94608000',
+}
+AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
 # Static Media Settings
-STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
-MEDIA_URL = f'{STATIC_URL}media/'
-STATICFILES_DIRS = (path.join(PROJECT_DIR, 'chat/static'),)
-STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
-ADMIN_MEDIA_PREFIX = f'{STATIC_URL}admin/'
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
-)
+STATICFILES_LOCATION = 'static'
+STATIC_URL = f'{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+STATICFILES_STORAGE = 'qChat.storages.StaticStorage'
 
-django_heroku.settings(locals())
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = f'{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+DEFAULT_FILE_STORAGE = 'qChat.storages.MediaStorage'
+
+ADMIN_MEDIA_PREFIX = f'{STATIC_URL}admin/'

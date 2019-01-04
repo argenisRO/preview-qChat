@@ -1,1 +1,2 @@
-web: daphne qChat.asgi:application --port $PORT --bind 0.0.0.0
+release: python manage.py migrate
+web: gunicorn qChat.wsgi --log-file -

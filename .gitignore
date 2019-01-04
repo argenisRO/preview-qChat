@@ -1,8 +1,7 @@
-__pycache__
+node_modules
+build
 .vscode
-*.scss
-*.sass-cache
+
+__pycache__/
+*.py[cod]
 *.sqlite3
-*.pyc
-/qChat/settings/local.py
-media_dev

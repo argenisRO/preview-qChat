@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+pylint = "*"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
+django-rest-auth = "*"
+channels = "*"
+channels-redis = "*"
+django-storages = "*"
+"boto3" = "*"
+gunicorn = "*"
+dj-database-url = "*"
+"psycopg2" = "*"
+django-rest-knox = "*"
+
+[requires]
+python_version = "3.6"
