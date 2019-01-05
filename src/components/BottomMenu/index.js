@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import NoFriend from './NoFriend'
+
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Avatar from '@material-ui/core/Avatar'
-import Chip from '@material-ui/core/Chip'
-import Typography from '@material-ui/core/Typography'
-
+import FriendsBubble from './FriendsBubble'
 import { withStyles } from '@material-ui/core/styles'
-import noFriend from './noFriend'
 
-const styles = theme => ({
+const styling = theme => ({
     friendsBar: {
         top: 'auto',
         bottom: 0,
@@ -46,7 +44,13 @@ class BottomMenu extends Component {
     }
 
     state = {
-        onlineUsers: [],
+        onlineUsers: [
+            {
+                fullName: 'Kevin Rodriguez',
+                img: 'https://puu.sh/CrSYK/db1ea36eb9.png',
+                status: status.online,
+            },
+        ],
     }
 
     render() {
@@ -57,28 +61,10 @@ class BottomMenu extends Component {
                 <Toolbar variant="dense" className={classes.toolbar}>
                     {this.state.onlineUsers.length > 0 ? (
                         this.state.onlineUsers.map(onlineUser => {
-                            return (
-                                <Chip
-                                    clickable={true}
-                                    avatar={
-                                        <Avatar
-                                            className={classes.userImg}
-                                            style={{ borderColor: onlineUser.status }}
-                                            alt={onlineUser.fullName}
-                                            src={onlineUser.img}
-                                        />
-                                    }
-                                    label={
-                                        <Typography variant="subtitle1" className={classes.userChipName}>
-                                            {onlineUser.fullName}
-                                        </Typography>
-                                    }
-                                    className={classes.userChip}
-                                />
-                            )
+                            return <FriendsBubble onlineUser={onlineUser} />
                         })
                     ) : (
-                        <noFriend />
+                        <NoFriend />
                     )}
                 </Toolbar>
             </AppBar>
@@ -86,4 +72,4 @@ class BottomMenu extends Component {
     }
 }
 
-export default withStyles(styles)(BottomMenu)
+export default withStyles(styling)(BottomMenu)
