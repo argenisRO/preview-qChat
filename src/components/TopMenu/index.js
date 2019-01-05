@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
+
 import { withStyles } from '@material-ui/core/styles'
 
-import Sidebar_Icon from '../../imgs/icons/Sidebar_Icon.svg'
+import SideBar from './SideBar'
 
 const styling = theme => ({
     menuBar: {
@@ -27,10 +27,7 @@ class TopMenu extends Component {
         return (
             <AppBar position="relative" color="primary">
                 <Toolbar variant="dense" className={classes.menuBar}>
-                    <IconButton aria-label="Chatrooms Menu">
-                        <img src={Sidebar_Icon} alt="Sidebar Icon" />
-                    </IconButton>
-
+                    <SideBar />
                     <Typography variant="h6" color="inherit">
                         qChat
                     </Typography>
