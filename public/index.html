@@ -25,6 +25,11 @@
                     border: 0.5px solid #484D52;
                 }
 
+                #nojsLogo {
+                    width: 62px;
+                    height: 62px; 
+                }
+
                 #MessageBox {
                     background-color: #343A40;
                     width: 600px;
@@ -58,6 +63,7 @@
                     box-shadow: 0 0 0 0.8px #707070;
                     display: inline-flex;
                     align-items: center;
+                    cursor: pointer;
                     transition:background .2s ease-out;
                 }
 
@@ -83,11 +89,12 @@
 
     <body>
         <noscript>
+            <!-- Direct SVG link will be replaced in the future -->
+            <img id="nojsLogo" src="%PUBLIC_URL%/favicon.svg"/>
             <div id="MessageBox">
-                <div id="nojsLogo"></div>
                 <div id="nojsTitle">Please Enable Javascript</div>
                 <div id="nojsDesc">Unfortunately qChat requires Javascript to function. <hr/>
-                For us to give you the best user experience ever, we require Javascript to be enabled, otherwise this would be a really ugly application. Most browsers come with Javascript enabled. If you meant to disable it, please know that nothing wrong comes from having Javascript enabled for qChat. We are friendly!</div>
+                In order for us to give you the best user experience ever, we require Javascript to be enabled, otherwise this would be a really ugly application. Most browsers come with Javascript automatically enabled and if you actually meant to disable it, please know that nothing wrong comes from having Javascript enabled for qChat. We are friendly!</div>
                 <div id="nojsButton"><a href="https://www.enable-javascript.com/">Need Help? Learn how to enable Javascript</a></div>
             </div>
         </noscript>
