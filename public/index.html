@@ -9,10 +9,83 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <title>qChat</title>
+        <noscript>
+            <style>
+                body {
+                    background: #263238;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 100vh;
+                    overflow: hidden;
+                }
+
+                hr {
+                    border: 0.5px solid #484D52;
+                }
+
+                #MessageBox {
+                    background-color: #343A40;
+                    width: 600px;
+                    height: 300px;
+                    border: 0.1px solid #4A545D;
+                    padding: 20px;
+                }
+
+                #nojsTitle {
+                    color: white;
+                    margin-bottom: 22px;
+                    font-size: 22px;
+                    font-weight: bold;
+                }
+
+                #nojsDesc {
+                    color: #8F8F8F;
+                    font-size: 10px;
+                    font-weight: bold;
+                }
+
+                #nojsButton {
+                    border-radius: 25px;
+                    background: #484D52;
+                    position: relative;
+                    bottom: -170px;
+                    right: -375px;
+                    padding: 6px 15px; 
+                    width: 210px;
+                    height: 20px;
+                    box-shadow: 0 0 0 0.8px #707070;
+                    display: inline-flex;
+                    align-items: center;
+                }
+
+                #nojsButton > a {
+                    color: #658AE1;
+                    font-size: 10px;
+                    font-weight: bold;
+                    text-decoration: none;
+                    letter-spacing: 0.4px;
+                    white-space: nowrap;
+                }
+
+                #nojsTitle, #nojsDesc, #nojsButton {
+                    font-family: "Roboto";
+                }
+            </style>
+        </noscript>
     </head>
 
     <body>
-        <noscript> Please enable Javascript </noscript>
+        <noscript>
+            <div id="MessageBox">
+                <div id="nojsLogo"></div>
+                <div id="nojsTitle">Please Enable Javascript</div>
+                <div id="nojsDesc">Unfortunately qChat requires Javascript to function. <hr/>
+                For us to give you the best user experience ever, we require Javascript to be enabled, otherwise this would be a really ugly application. Most browsers come with Javascript enabled. If you meant to disable it, please know that nothing wrong comes from having Javascript enabled for qChat. We are friendly!</div>
+                <div id="nojsButton"><a href="https://www.enable-javascript.com/">Need Help? Learn how to enable Javascript</a></div>
+            </div>
+        </noscript>
         <div id="main"></div>
     </body>
 </html>
