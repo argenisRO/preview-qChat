@@ -4,8 +4,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import Card from '@material-ui/core/Card'
 import IconButton from '@material-ui/core/IconButton'
-import Home_Icon from '../../imgs/icons/Home_Icon.svg'
-import Leaf_Icon from '../../imgs/icons/Leaf_Icon.svg'
 import Grid from '@material-ui/core/Grid'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Typography from '@material-ui/core/Typography'
@@ -39,6 +37,9 @@ const styling = themes => ({
         color: 'white',
         fontSize: 10.5,
     },
+    noChannelsMSG: {
+        color: '#8F8F8F',
+    },
 })
 
 class SideBarRooms extends Component {
@@ -47,101 +48,41 @@ class SideBarRooms extends Component {
     }
 
     state = {
-        chatrooms: [
-            {
-                id: 0,
-                title: 'Home Channel',
-                description:
-                    'Welcome to qChat. Join our Home Channel to instantly connect with guest and members from around the world!',
-                img: Home_Icon,
-                connected: 15,
-                maxConnection: 20,
-            },
-            {
-                id: 1,
-                title: 'Chill Corner',
-                description:
-                    'Looking to relax? Wanna listen to relaxing music? Join the Chill Corner and Chill with us!',
-                img: Leaf_Icon,
-                connected: 0,
-                maxConnection: 10,
-            },
-            {
-                id: 2,
-                title: 'Gaming Center',
-                description: 'We talk about games and only games. E-Sport Games, Casual Games, everything!',
-                img: 'https://puu.sh/CsjYm/466e855a45.png',
-                connected: 3,
-                maxConnection: 10,
-            },
-            {
-                id: 3,
-                title: 'Anime Room',
-                description:
-                    'Watch anime together with our public Anime Room. If you have a recommendation please post it in chat!',
-                img: 'https://puu.sh/Cskhr/2d16f1e3c5.png',
-                connected: 14,
-                maxConnection: 20,
-            },
-            {
-                id: 4,
-                title: 'Retro Station',
-                description: "Calling all the 80's kids! Lets talk Retro!",
-                img: 'https://puu.sh/Cskii/3d1d75e8d4.png',
-                connected: 1,
-                maxConnection: 10,
-            },
-            {
-                id: 5,
-                title: 'Vanguard',
-                description:
-                    'Vanguard Tournaments every sunday. Contact Kevin Rodriguez for an invite to the channel.',
-                img: 'https://puu.sh/CskiO/3242236af5.png',
-                connected: 2,
-                maxConnection: 10,
-            },
-            {
-                id: 6,
-                title: 'NSFW',
-                description: '+18 ONLY | Adult Porn',
-                img: 'https://puu.sh/Csklg/5b7bc36153.svg',
-                connected: 19,
-                maxConnection: 20,
-            },
-        ],
+        chatrooms: [],
     }
 
     render() {
         const { classes } = this.props
         return (
             <React.Fragment>
-                {this.state.chatrooms.map(room => {
-                    return (
-                        <Card square={true} className={classes.chatroom}>
-                            <Grid container spacing={16} className={classes.chatroomContent}>
-                                <Grid item style={{ paddingLeft: 2, paddingRight: 2 }}>
-                                    <IconButton aria-label="Home Channel">
-                                        <Avatar
-                                            className={classes.chatroomImage}
-                                            alt={`${room.title} Icon`}
-                                            src={room.img}
-                                        />
-                                    </IconButton>
-                                </Grid>
-                                <Grid item xs={12} sm container>
-                                    <Grid item xs container direction="column" spacing={16}>
-                                        <Grid item xs>
-                                            <Typography className={classes.chatroomTitle}>
-                                                {room.title}
-                                            </Typography>
-                                            <Typography className={classes.chatroomDescription}>
-                                                {room.description}
-                                            </Typography>
-                                        </Grid>
+                {this.state.chatrooms.length > 0 ? (
+                    this.state.chatrooms.map(room => {
+                        return (
+                            <Card square={true} className={classes.chatroom}>
+                                <Grid container spacing={16} className={classes.chatroomContent}>
+                                    <Grid item style={{ paddingLeft: 2, paddingRight: 2 }}>
+                                        <IconButton aria-label="Home Channel">
+                                            <Avatar
+                                                className={classes.chatroomImage}
+                                                alt={`${room.title} Icon`}
+                                                src={room.img}
+                                            />
+                                        </IconButton>
                                     </Grid>
-                                    <Grid item style={{ padding: 3 }}>
-                                        <SvgIcon
-                                            /*
+                                    <Grid item xs={12} sm container>
+                                        <Grid item xs container direction="column" spacing={16}>
+                                            <Grid item xs>
+                                                <Typography className={classes.chatroomTitle}>
+                                                    {room.title}
+                                                </Typography>
+                                                <Typography className={classes.chatroomDescription}>
+                                                    {room.description}
+                                                </Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item style={{ padding: 3 }}>
+                                            <SvgIcon
+                                                /*
                                                 @nativeColor:
                                                     nativeColor is 2 colors that if 80%
                                                     of a room is full, the SVG will fill Yellow,
@@ -151,40 +92,58 @@ class SideBarRooms extends Component {
                                                 @viewBox:    
                                                     Encountered an issue with the default viewBox
                                                     where half the SVG was being removed.
-                                                    Having it set to '0 0 30 30' fixed the issue
-                                                    but I believe theres a better way to do this.
+                                                    Having it set to '0 0 30 30' fixed the issue.
+                                                    Currently looking for a better way to solve this problem.
                                                         
                                                 @ArgenisRO
                                             */
-                                            style={{
-                                                marginBottom: '7px',
-                                                marginRight: '2px',
-                                                width: '12px',
-                                                height: '12px',
-                                            }}
-                                            viewBox="0 0 30 30"
-                                            nativeColor={
-                                                room.connected === room.maxConnection
-                                                    ? '#D15555'
-                                                    : room.connected >= room.maxConnection * 0.8
-                                                    ? '#C4C410'
-                                                    : '#8FD155'
-                                            }>
-                                            <path d="M7,21.667c0-2.667,5.333-4.133,8-4.133S23,19,23,21.667V23H7M19,11a4,4,0,1,1-4-4,4,4,0,0,1,4,4M3,5.667V24.333A2.667,2.667,0,0,0,5.667,27H24.333A2.667,2.667,0,0,0,27,24.333V5.667A2.667,2.667,0,0,0,24.333,3H5.667A2.666,2.666,0,0,0,3,5.667Z" />
-                                        </SvgIcon>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography
-                                            className={classes.chatroomConnection}
-                                            color="textSecondary">
-                                            {`${room.connected}/${room.maxConnection}`}
-                                        </Typography>
+                                                style={{
+                                                    marginBottom: '7px',
+                                                    marginRight: '2px',
+                                                    width: '12px',
+                                                    height: '12px',
+                                                }}
+                                                viewBox="0 0 30 30"
+                                                nativeColor={
+                                                    room.connected === room.maxConnection
+                                                        ? '#D15555'
+                                                        : room.connected >= room.maxConnection * 0.8
+                                                        ? '#C4C410'
+                                                        : '#8FD155'
+                                                }>
+                                                <path d="M7,21.667c0-2.667,5.333-4.133,8-4.133S23,19,23,21.667V23H7M19,11a4,4,0,1,1-4-4,4,4,0,0,1,4,4M3,5.667V24.333A2.667,2.667,0,0,0,5.667,27H24.333A2.667,2.667,0,0,0,27,24.333V5.667A2.667,2.667,0,0,0,24.333,3H5.667A2.666,2.666,0,0,0,3,5.667Z" />
+                                            </SvgIcon>
+                                        </Grid>
+                                        <Grid item>
+                                            <Typography
+                                                className={classes.chatroomConnection}
+                                                color="textSecondary">
+                                                {`${room.connected}/${room.maxConnection}`}
+                                            </Typography>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
-                        </Card>
-                    )
-                })}
+                            </Card>
+                        )
+                    })
+                ) : (
+                    /* 
+                        Incase no channels are present on the sidebar,
+                        the following message will be displayed.
+                    */
+                    <Grid container direction="column" justify="center" alignItems="center">
+                        <Grid item>
+                            <SvgIcon viewBox="0 0 24 24" nativeColor="#8f8f8f">
+                                <path d="M0,12A12,12,0,1,1,12,24,12.013,12.013,0,0,1,0,12Zm2,0A10,10,0,1,0,12,2,10.012,10.012,0,0,0,2,12Zm5.458,4.458L8.09,15.9a5.942,5.942,0,0,1,7.827,0l.632.555L15.44,17.717l-.631-.554a4.262,4.262,0,0,0-5.61,0l-.632.554Zm7.76-5.647V9.131H16.9v1.681Zm-8.116,0V9.131H8.782v1.681Z" />
+                            </SvgIcon>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="h6" className={classes.noChannelsMSG}>
+                                No Channels Found
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                )}
             </React.Fragment>
         )
     }
