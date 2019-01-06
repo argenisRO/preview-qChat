@@ -12,6 +12,10 @@ const styling = themes => ({
         width: 34,
         height: 34,
     },
+    separator: {
+        margin: '15px 40px 10px 40px',
+        border: '0.5px solid #484D52',
+    },
     paper: {
         width: '410px',
         backgroundColor: '#343A40',
@@ -50,7 +54,9 @@ class SideBar extends Component {
                         onClick={this.toggleSidebar}
                         onKeyDown={this.toggleSidebar}>
                         <SideBarLogo />
+                        <hr className={classes.separator} />
                         <SideBarRooms />
+                        <hr className={classes.separator} />
                     </div>
                 </SwipeableDrawer>
             </React.Fragment>
