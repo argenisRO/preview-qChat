@@ -13,7 +13,7 @@ const styling = themes => ({
         height: 34,
     },
     paper: {
-        width: '400px',
+        width: '410px',
         backgroundColor: '#343A40',
     },
 })
@@ -43,7 +43,7 @@ class SideBar extends Component {
                     open={this.state.opened}
                     onClose={this.toggleSidebar}
                     swipeAreaWidth="70"
-                    transitionDuration={{ enter: 320, exit: 500 }}>
+                    transitionDuration={{ enter: 350, exit: 510 }}>
                     <div
                         tabIndex={0}
                         role="button"
