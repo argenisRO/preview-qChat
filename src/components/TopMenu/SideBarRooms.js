@@ -51,16 +51,17 @@ class SideBarRooms extends Component {
             {
                 id: 0,
                 title: 'Home Channel',
-                description: 'Lorem ipsum dolor sit amet.',
+                description:
+                    'Welcome to qChat. Join our Home Channel to instantly connect with guest and members from around the world!',
                 img: Home_Icon,
-                connected: 2,
-                maxConnection: 10,
+                connected: 15,
+                maxConnection: 20,
             },
             {
                 id: 1,
                 title: 'Chill Corner',
                 description:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales ultricies velit, non sollicitudin velit lacinia aliquet.',
+                    'Looking to relax? Wanna listen to relaxing music? Join the Chill Corner and Chill with us!',
                 img: Leaf_Icon,
                 connected: 0,
                 maxConnection: 10,
@@ -68,11 +69,44 @@ class SideBarRooms extends Component {
             {
                 id: 2,
                 title: 'Gaming Center',
-                description:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales ultricies velit, non sollicitudin velit lacinia aliquet.',
+                description: 'We talk about games and only games. E-Sport Games, Casual Games, everything!',
                 img: 'https://puu.sh/CsjYm/466e855a45.png',
-                connected: 4,
-                maxConnection: 5,
+                connected: 3,
+                maxConnection: 10,
+            },
+            {
+                id: 3,
+                title: 'Anime Room',
+                description:
+                    'Watch anime together with our public Anime Room. If you have a recommendation please post it in chat!',
+                img: 'https://puu.sh/Cskhr/2d16f1e3c5.png',
+                connected: 14,
+                maxConnection: 20,
+            },
+            {
+                id: 4,
+                title: 'Retro Station',
+                description: "Calling all the 80's kids! Lets talk Retro!",
+                img: 'https://puu.sh/Cskii/3d1d75e8d4.png',
+                connected: 1,
+                maxConnection: 10,
+            },
+            {
+                id: 5,
+                title: 'Vanguard',
+                description:
+                    'Vanguard Tournaments every sunday. Contact Kevin Rodriguez for an invite to the channel.',
+                img: 'https://puu.sh/CskiO/3242236af5.png',
+                connected: 2,
+                maxConnection: 10,
+            },
+            {
+                id: 6,
+                title: 'NSFW',
+                description: '+18 ONLY | Adult Porn',
+                img: 'https://puu.sh/Csklg/5b7bc36153.svg',
+                connected: 19,
+                maxConnection: 20,
             },
         ],
     }
@@ -110,8 +144,9 @@ class SideBarRooms extends Component {
                                             /*
                                                 @nativeColor:
                                                     nativeColor is 2 colors that if 80%
-                                                    of a room is full, the SVG will fill red,
-                                                    otherwise it would be green.
+                                                    of a room is full, the SVG will fill Yellow,
+                                                    if 100% of a room is full, the SVG will fill Red
+                                                    and otherwise, it would be green.
 
                                                 @viewBox:    
                                                     Encountered an issue with the default viewBox
@@ -129,8 +164,10 @@ class SideBarRooms extends Component {
                                             }}
                                             viewBox="0 0 30 30"
                                             nativeColor={
-                                                room.connected >= room.maxConnection * 0.8
+                                                room.connected === room.maxConnection
                                                     ? '#D15555'
+                                                    : room.connected >= room.maxConnection * 0.8
+                                                    ? '#C4C410'
                                                     : '#8FD155'
                                             }>
                                             <path d="M7,21.667c0-2.667,5.333-4.133,8-4.133S23,19,23,21.667V23H7M19,11a4,4,0,1,1-4-4,4,4,0,0,1,4,4M3,5.667V24.333A2.667,2.667,0,0,0,5.667,27H24.333A2.667,2.667,0,0,0,27,24.333V5.667A2.667,2.667,0,0,0,24.333,3H5.667A2.666,2.666,0,0,0,3,5.667Z" />
