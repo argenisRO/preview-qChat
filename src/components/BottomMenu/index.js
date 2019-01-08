@@ -16,9 +16,6 @@ const styling = theme => ({
     },
     toolbar: {
         background: '#343A40',
-        borderColor: 'none',
-        // boxShadow:
-        //     '0px -2px 4px -1px rgba(0,0,0,0.2), 0px -4px 5px 0px rgba(0,0,0,0.14), 0px -1px 10px 0px rgba(0,0,0,0.12)',
         minHeight: '50px',
     },
     userChip: {
@@ -46,23 +43,7 @@ class BottomMenu extends Component {
     }
 
     state = {
-        onlineUsers: [
-            {
-                fullName: 'Kevin Rodriguez',
-                img: 'https://puu.sh/CrSYK/db1ea36eb9.png',
-                status: status.online,
-            },
-            {
-                fullName: 'Eris Cortez',
-                img: 'https://i.ytimg.com/vi/JFAMNnkozss/hqdefault.jpg',
-                status: status.busy,
-            },
-            {
-                fullName: 'Miles Jefferson',
-                img: 'https://www.westsiderag.com/wp-content/uploads/2018/05/martin.png',
-                status: status.away,
-            },
-        ],
+        onlineUsers: [{}, {}, {}],
     }
 
     render() {
@@ -72,8 +53,8 @@ class BottomMenu extends Component {
             <AppBar position="fixed" color="primary" className={classes.friendsBar}>
                 <Toolbar variant="dense" className={classes.toolbar}>
                     {this.state.onlineUsers.length > 0 ? (
-                        this.state.onlineUsers.map(onlineUser => {
-                            return <FriendsBubble onlineUser={onlineUser} />
+                        this.state.onlineUsers.map(User => {
+                            return <FriendsBubble onlineUser={User} />
                         })
                     ) : (
                         <NoFriend />

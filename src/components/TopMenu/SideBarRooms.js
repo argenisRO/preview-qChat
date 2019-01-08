@@ -58,7 +58,7 @@ class SideBarRooms extends Component {
                 {this.state.chatrooms.length > 0 ? (
                     this.state.chatrooms.map(room => {
                         return (
-                            <Card square={true} className={classes.chatroom}>
+                            <Card square className={classes.chatroom}>
                                 <Grid container spacing={16} className={classes.chatroomContent}>
                                     <Grid item style={{ paddingLeft: 2, paddingRight: 2 }}>
                                         <IconButton aria-label="Home Channel">

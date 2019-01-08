@@ -13,7 +13,7 @@ const styling = themes => ({
         height: 34,
     },
     separator: {
-        margin: '15px 40px 10px 40px',
+        margin: '10px 40px 10px 40px',
         border: '0.5px solid #484D52',
     },
     paper: {

@@ -17,6 +17,7 @@ const styling = themes => ({
     helperText: {
         color: '#6F7C88',
         marginLeft: '10px',
+        fontWeight: 'bold',
     },
 })
 
@@ -35,7 +36,7 @@ class NoFriend extends Component {
                     color="inherit"
                     aria-label="Add Friends"
                     className={classes.noFriendButton}
-                    disableFocusRipple={true}>
+                    disableFocusRipple>
                     <PersonAdd fontSize="inherit" className={classes.extendedIcon} />
                     Add Friends
                 </Fab>
