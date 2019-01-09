@@ -12,6 +12,10 @@ import Enlarge_Icon from '../../imgs/icons/Enlarge_Icon.svg'
 import Exit_Icon from '../../imgs/icons/Exit_Icon.svg'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
+import TextField from '@material-ui/core/TextField'
+import WhisperMessage from './WhisperMessage'
+import Badge from '@material-ui/core/Badge'
+import InputBase from '@material-ui/core/InputBase'
 import { withStyles } from '@material-ui/core/styles'
 
 const styling = theme => ({
@@ -20,6 +24,9 @@ const styling = theme => ({
         background: '#484D52',
         '&:hover': {
             backgroundColor: '#4A545D',
+        },
+        '&:focus': {
+            backgroundColor: '#677E92',
         },
     },
     userImg: {
@@ -43,20 +50,20 @@ const styling = theme => ({
     whisperChatBoxOuter: {
         background: '#2E3339',
         height: '256px',
+        overflow: 'auto',
     },
-    whisperMessageBox: {
-        marginTop: '1.3px',
-        marginBottom: '1.3px',
+    whisperInputText: {
+        color: '#707070',
+        background: '#272C31',
+        borderRadius: '10px',
+        paddingLeft: '10px',
+        paddingRight: '10px',
+        width: '93.5%',
     },
-    whisperUsername: {
-        color: '#A7A7A7',
-        fontSize: 8,
-        marginLeft: 10,
-    },
-    whisperMessage: {
-        fontSize: 12,
-        marginLeft: 10,
-        color: 'white',
+    notificationCircle: {
+        top: '-7px',
+        right: '-1px',
+        backgroundColor: '#455F77',
     },
 })
 
@@ -66,9 +73,47 @@ class FriendsBubble extends Component {
     }
 
     state = {
+        writtenMessage: '',
         chipAnchor: null,
         opened: false,
-        messages: [],
+        messages: [
+            {
+                username: 'Argenis Rodriguez',
+                message: 'Testing Self Messages',
+                date: new Date()
+                    .toJSON()
+                    .slice(0, 10)
+                    .replace(/-/g, '/'),
+                watched: false,
+            },
+            {
+                username: 'Test User One',
+                message: 'Testing Second Party Message',
+                date: new Date()
+                    .toJSON()
+                    .slice(0, 10)
+                    .replace(/-/g, '/'),
+                watched: false,
+            },
+            {
+                username: 'Test User One',
+                message: 'Testing the second line of a message box to see how words wrap around.',
+                date: new Date()
+                    .toJSON()
+                    .slice(0, 10)
+                    .replace(/-/g, '/'),
+                watched: false,
+            },
+        ],
+    }
+
+    updateWatchedMessage = () => {
+        let updateWatchedMSGS = this.state.messages
+        console.log(updateWatchedMSGS)
+        updateWatchedMSGS.map(MSG => {
+            return (MSG.watched = true)
+        })
+        this.setState({ messages: updateWatchedMSGS })
     }
 
     handleOpenWhisper = e => {
@@ -76,6 +121,48 @@ class FriendsBubble extends Component {
             chipAnchor: e.currentTarget,
             opened: !this.state.opened,
         })
+    }
+
+    handleWritingMessage = e => {
+        this.setState({ writtenMessage: e.target.value })
+    }
+
+    handleSendMessage = e => {
+        e.preventDefault()
+        // Execute Send Message Here <--
+        /* 
+            The following function is only for testing purposes 
+        */
+        this.setState({
+            messages: [
+                ...this.state.messages,
+                {
+                    username: 'Argenis Rodriguez',
+                    message: this.state.writtenMessage,
+                    date: new Date()
+                        .toJSON()
+                        .slice(0, 10)
+                        .replace(/-/g, '/'),
+                },
+            ],
+        })
+        setTimeout(() => {
+            this.setState({
+                messages: [
+                    ...this.state.messages,
+                    {
+                        username: 'Eris Cortez',
+                        message: 'Test Notification',
+                        date: new Date()
+                            .toJSON()
+                            .slice(0, 10)
+                            .replace(/-/g, '/'),
+                        watched: this.state.opened,
+                    },
+                ],
+            })
+        }, 5000)
+        e.target.reset()
     }
 
     render() {
@@ -105,9 +192,18 @@ class FriendsBubble extends Component {
             />
         )
 
+        const unreadMessages = this.state.messages.filter(message => {
+            return message.watched === false
+        }).length
+
         return (
             <React.Fragment>
-                {userChipBubble}
+                <Badge
+                    classes={{ badge: classes.notificationCircle }}
+                    badgeContent={unreadMessages}
+                    invisible={this.state.opened || unreadMessages === 0}>
+                    {userChipBubble}
+                </Badge>
                 <Popper
                     style={{ color: 'white' }}
                     open={this.state.opened}
@@ -115,7 +211,7 @@ class FriendsBubble extends Component {
                     transition>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={500}>
-                            <Paper className={classes.whisperBox}>
+                            <Paper elevation={12} className={classes.whisperBox}>
                                 <Grid container>
                                     <Grid item xs={9}>
                                         <Chip
@@ -150,35 +246,33 @@ class FriendsBubble extends Component {
                                             </IconButton>
                                         </Tooltip>
                                         <Tooltip title="Close">
-                                            <IconButton classes={{ root: classes.whisperButtons }}>
+                                            <IconButton
+                                                onClick={this.handleOpenWhisper}
+                                                classes={{ root: classes.whisperButtons }}>
                                                 <img src={Exit_Icon} alt="Exit" />
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Paper className={classes.whisperChatBoxOuter} elevation={0} square>
-                                            {this.state.messages.map(({ username, message, date }) => {
+                                            {this.state.messages.map(message => {
                                                 return (
-                                                    <Paper elevation={0} square>
-                                                        <Grid
-                                                            className={classes.whisperMessageBox}
-                                                            style={{
-                                                                background:
-                                                                    username === 'Argenis Rodriguez'
-                                                                        ? '#455F77'
-                                                                        : '#4A545D',
-                                                            }}>
-                                                            <Typography className={classes.whisperUsername}>
-                                                                {username}
-                                                            </Typography>
-                                                            <Typography className={classes.whisperMessage}>
-                                                                {message}
-                                                            </Typography>
-                                                        </Grid>
-                                                    </Paper>
+                                                    <WhisperMessage
+                                                        TransitionProps={TransitionProps}
+                                                        WhisperMessageSent={message}
+                                                        updater={this.updateWatchedMessage}
+                                                    />
                                                 )
                                             })}
                                         </Paper>
+                                        <form style={{ paddingTop: '2px' }} onSubmit={this.handleSendMessage}>
+                                            <InputBase
+                                                autoFocus
+                                                fullWidth
+                                                className={classes.whisperInputText}
+                                                onChange={this.handleWritingMessage}
+                                            />
+                                        </form>
                                     </Grid>
                                 </Grid>
                             </Paper>

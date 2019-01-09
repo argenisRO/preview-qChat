@@ -6,6 +6,7 @@ import NoFriend from './NoFriend'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import FriendsBubble from './FriendsBubble'
+import Slide from '@material-ui/core/Slide'
 import { withStyles } from '@material-ui/core/styles'
 
 const styling = theme => ({
@@ -43,24 +44,47 @@ class BottomMenu extends Component {
     }
 
     state = {
-        onlineUsers: [{}, {}, {}],
+        onlineUsers: [
+            {
+                fullName: 'Test User One',
+                img: 'https://d3iw72m71ie81c.cloudfront.net/male-93.jpg',
+                status: status.online,
+            },
+            {
+                fullName: 'Test User Two',
+                img: 'https://d3iw72m71ie81c.cloudfront.net/female-83.jpg',
+                status: status.busy,
+            },
+            {
+                fullName: 'Test User Three',
+                img: 'https://d3iw72m71ie81c.cloudfront.net/male-93.jpg',
+                status: status.online,
+            },
+            {
+                fullName: 'Test User Four',
+                img: 'https://d3iw72m71ie81c.cloudfront.net/male-27.jpg',
+                status: status.away,
+            },
+        ],
     }
 
     render() {
         const { classes } = this.props
 
         return (
-            <AppBar position="fixed" color="primary" className={classes.friendsBar}>
-                <Toolbar variant="dense" className={classes.toolbar}>
-                    {this.state.onlineUsers.length > 0 ? (
-                        this.state.onlineUsers.map(User => {
-                            return <FriendsBubble onlineUser={User} />
-                        })
-                    ) : (
-                        <NoFriend />
-                    )}
-                </Toolbar>
-            </AppBar>
+            <Slide direction="up" in mountOnEnter unmountOnExit>
+                <AppBar position="fixed" color="primary" className={classes.friendsBar}>
+                    <Toolbar variant="dense" className={classes.toolbar}>
+                        {this.state.onlineUsers.length > 0 ? (
+                            this.state.onlineUsers.map(User => {
+                                return <FriendsBubble onlineUser={User} />
+                            })
+                        ) : (
+                            <NoFriend />
+                        )}
+                    </Toolbar>
+                </AppBar>
+            </Slide>
         )
     }
 }
