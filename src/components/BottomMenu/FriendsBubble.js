@@ -12,7 +12,6 @@ import Enlarge_Icon from '../../imgs/icons/Enlarge_Icon.svg'
 import Exit_Icon from '../../imgs/icons/Exit_Icon.svg'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
-import TextField from '@material-ui/core/TextField'
 import WhisperMessage from './WhisperMessage'
 import Badge from '@material-ui/core/Badge'
 import InputBase from '@material-ui/core/InputBase'
@@ -69,7 +68,7 @@ const styling = theme => ({
 
 class FriendsBubble extends Component {
     static propTypes = {
-        prop: PropTypes,
+        classes: PropTypes.object.isRequired,
     }
 
     state = {
@@ -109,7 +108,6 @@ class FriendsBubble extends Component {
 
     updateWatchedMessage = () => {
         let updateWatchedMSGS = this.state.messages
-        console.log(updateWatchedMSGS)
         updateWatchedMSGS.map(MSG => {
             return (MSG.watched = true)
         })
@@ -255,9 +253,10 @@ class FriendsBubble extends Component {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Paper className={classes.whisperChatBoxOuter} elevation={0} square>
-                                            {this.state.messages.map(message => {
+                                            {this.state.messages.map((message, id) => {
                                                 return (
                                                     <WhisperMessage
+                                                        key={id}
                                                         TransitionProps={TransitionProps}
                                                         WhisperMessageSent={message}
                                                         updater={this.updateWatchedMessage}

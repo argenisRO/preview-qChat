@@ -23,7 +23,7 @@ const styling = themes => ({
 
 class NoFriend extends Component {
     static propTypes = {
-        prop: PropTypes,
+        classes: PropTypes.object.isRequired,
     }
 
     render() {

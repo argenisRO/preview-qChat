@@ -34,7 +34,7 @@ const styling = theme => ({
 
 class WhisperMessage extends Component {
     static propTypes = {
-        prop: PropTypes,
+        classes: PropTypes.object.isRequired,
     }
 
     componentDidMount() {

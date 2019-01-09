@@ -44,7 +44,7 @@ const styling = themes => ({
 
 class SideBarRooms extends Component {
     static propTypes = {
-        prop: PropTypes,
+        classes: PropTypes.object.isRequired,
     }
 
     state = {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/IconButton'
 import qChat_Icon from '../../imgs/icons/qChat_Icon.svg'
 import { withStyles } from '@material-ui/core/styles'
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
+import Drawer from '@material-ui/core/Drawer'
 import SideBarLogo from './SideBarLogo'
 import SideBarRooms from './SideBarRooms'
 
@@ -24,7 +24,7 @@ const styling = themes => ({
 
 class SideBar extends Component {
     static propTypes = {
-        prop: PropTypes,
+        classes: PropTypes.object.isRequired,
     }
 
     state = {
@@ -42,11 +42,10 @@ class SideBar extends Component {
                 <IconButton aria-label="Chatrooms Menu" onClick={this.toggleSidebar}>
                     <img className={classes.sidebar_icon} src={qChat_Icon} alt="Sidebar Icon" />
                 </IconButton>
-                <SwipeableDrawer
+                <Drawer
                     classes={{ paper: classes.paper }}
                     open={this.state.opened}
                     onClose={this.toggleSidebar}
-                    swipeAreaWidth="70"
                     transitionDuration={{ enter: 350, exit: 510 }}>
                     <div
                         tabIndex={0}
@@ -58,7 +57,7 @@ class SideBar extends Component {
                         <SideBarRooms />
                         <hr className={classes.separator} />
                     </div>
-                </SwipeableDrawer>
+                </Drawer>
             </React.Fragment>
         )
     }

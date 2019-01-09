@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
+import { v4 } from 'uuid'
 import NoFriend from './NoFriend'
 
 import AppBar from '@material-ui/core/AppBar'
@@ -77,7 +77,7 @@ class BottomMenu extends Component {
                     <Toolbar variant="dense" className={classes.toolbar}>
                         {this.state.onlineUsers.length > 0 ? (
                             this.state.onlineUsers.map(User => {
-                                return <FriendsBubble onlineUser={User} />
+                                return <FriendsBubble key={v4()} onlineUser={User} />
                             })
                         ) : (
                             <NoFriend />
