@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-
-import { withStyles } from '@material-ui/core/styles'
+import { AppBar, Toolbar, Typography, Slide, withStyles } from '@material-ui/core'
 
 import SideBar from './SideBar'
 
-const styling = theme => ({
+const styling = themes => ({
     menuBar: {
         background: '#343A40',
         minHeight: '60px',
@@ -25,14 +21,16 @@ class TopMenu extends Component {
         const { classes } = this.props
 
         return (
-            <AppBar position="relative" color="primary">
-                <Toolbar variant="dense" className={classes.menuBar}>
-                    <SideBar />
-                    <Typography variant="h6" color="inherit">
-                        qChat
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+            <Slide direction="down" in mountOnEnter unmountOnExit>
+                <AppBar position="relative" color="primary">
+                    <Toolbar variant="dense" className={classes.menuBar}>
+                        <SideBar />
+                        <Typography variant="h6" color="inherit">
+                            qChat
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+            </Slide>
         )
     }
 }

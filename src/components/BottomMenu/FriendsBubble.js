@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Avatar from '@material-ui/core/Avatar'
-import Chip from '@material-ui/core/Chip'
-import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
-import Fade from '@material-ui/core/Fade'
-import Popper from '@material-ui/core/Popper'
-import Grid from '@material-ui/core/Grid'
+import * as moment from 'moment'
+
+import WhisperMessage from './WhisperMessage'
+
 import AddFriend_Icon from '../../imgs/icons/AddFriend_Icon.svg'
 import Enlarge_Icon from '../../imgs/icons/Enlarge_Icon.svg'
 import Exit_Icon from '../../imgs/icons/Exit_Icon.svg'
-import IconButton from '@material-ui/core/IconButton'
-import Tooltip from '@material-ui/core/Tooltip'
-import WhisperMessage from './WhisperMessage'
-import Badge from '@material-ui/core/Badge'
-import InputBase from '@material-ui/core/InputBase'
-import { withStyles } from '@material-ui/core/styles'
+
+import {
+    Avatar,
+    Chip,
+    Typography,
+    Paper,
+    Fade,
+    Popper,
+    Grid,
+    IconButton,
+    Tooltip,
+    withStyles,
+    InputBase,
+    Badge,
+} from '@material-ui/core'
 
 const styling = theme => ({
     userChip: {
@@ -79,28 +85,19 @@ class FriendsBubble extends Component {
             {
                 username: 'Argenis Rodriguez',
                 message: 'Testing Self Messages',
-                date: new Date()
-                    .toJSON()
-                    .slice(0, 10)
-                    .replace(/-/g, '/'),
+                date: moment('2019-01-01T19:57:51-05:00'),
                 watched: false,
             },
             {
                 username: 'Test User One',
                 message: 'Testing Second Party Message',
-                date: new Date()
-                    .toJSON()
-                    .slice(0, 10)
-                    .replace(/-/g, '/'),
+                date: moment(),
                 watched: false,
             },
             {
                 username: 'Test User One',
                 message: 'Testing the second line of a message box to see how words wrap around.',
-                date: new Date()
-                    .toJSON()
-                    .slice(0, 10)
-                    .replace(/-/g, '/'),
+                date: moment(),
                 watched: false,
             },
         ],
@@ -137,10 +134,7 @@ class FriendsBubble extends Component {
                 {
                     username: 'Argenis Rodriguez',
                     message: this.state.writtenMessage,
-                    date: new Date()
-                        .toJSON()
-                        .slice(0, 10)
-                        .replace(/-/g, '/'),
+                    date: moment(),
                 },
             ],
         })
@@ -151,10 +145,7 @@ class FriendsBubble extends Component {
                     {
                         username: 'Eris Cortez',
                         message: 'Test Notification',
-                        date: new Date()
-                            .toJSON()
-                            .slice(0, 10)
-                            .replace(/-/g, '/'),
+                        date: moment(),
                         watched: this.state.opened,
                     },
                 ],
@@ -211,6 +202,7 @@ class FriendsBubble extends Component {
                         <Fade {...TransitionProps} timeout={500}>
                             <Paper elevation={12} className={classes.whisperBox}>
                                 <Grid container>
+                                    {/* User Image */}
                                     <Grid item xs={9}>
                                         <Chip
                                             clickable
@@ -232,6 +224,7 @@ class FriendsBubble extends Component {
                                             className={classes.userChip}
                                         />
                                     </Grid>
+                                    {/* Top Icons */}
                                     <Grid item xs={3}>
                                         <Tooltip title="Remove Friend">
                                             <IconButton classes={{ root: classes.whisperButtons }}>
@@ -251,6 +244,7 @@ class FriendsBubble extends Component {
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
+                                    {/* Messages List */}
                                     <Grid item xs={12}>
                                         <Paper className={classes.whisperChatBoxOuter} elevation={0} square>
                                             {this.state.messages.map((message, id) => {
@@ -264,6 +258,7 @@ class FriendsBubble extends Component {
                                                 )
                                             })}
                                         </Paper>
+                                        {/* Input Field */}
                                         <form style={{ paddingTop: '2px' }} onSubmit={this.handleSendMessage}>
                                             <InputBase
                                                 autoFocus

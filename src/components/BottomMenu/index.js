@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
-import NoFriend from './NoFriend'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
+import { AppBar, Toolbar, Slide, withStyles } from '@material-ui/core'
+
+import NoFriend from './NoFriend'
 import FriendsBubble from './FriendsBubble'
-import Slide from '@material-ui/core/Slide'
-import { withStyles } from '@material-ui/core/styles'
 
 const styling = theme => ({
     friendsBar: {

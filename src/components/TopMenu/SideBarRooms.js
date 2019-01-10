@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
-import Avatar from '@material-ui/core/Avatar'
-import Card from '@material-ui/core/Card'
-import IconButton from '@material-ui/core/IconButton'
-import Grid from '@material-ui/core/Grid'
-import SvgIcon from '@material-ui/core/SvgIcon'
-import Typography from '@material-ui/core/Typography'
+import Home_Icon from '../../imgs/icons/Home_Icon.svg'
+import Leaf_Icon from '../../imgs/icons/Leaf_Icon.svg'
+import { Avatar, Card, IconButton, Grid, SvgIcon, Typography, withStyles } from '@material-ui/core'
 
 const styling = themes => ({
     chatroom: {
@@ -48,7 +44,34 @@ class SideBarRooms extends Component {
     }
 
     state = {
-        chatrooms: [],
+        chatrooms: [
+            {
+                id: 0,
+                title: 'Home Channel',
+                description: 'Lorem ipsum dolor sit amet.',
+                img: Home_Icon,
+                connected: 2,
+                maxConnection: 10,
+            },
+            {
+                id: 1,
+                title: 'Chill Corner',
+                description:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales ultricies velit, non sollicitudin velit lacinia aliquet.',
+                img: Leaf_Icon,
+                connected: 0,
+                maxConnection: 10,
+            },
+            {
+                id: 2,
+                title: 'Gaming Center',
+                description:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales ultricies velit, non sollicitudin velit lacinia aliquet.',
+                img: 'https://puu.sh/CsjYm/466e855a45.png',
+                connected: 4,
+                maxConnection: 5,
+            },
+        ],
     }
 
     render() {

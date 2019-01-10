@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import IconButton from '@material-ui/core/IconButton'
+
+import { IconButton, Drawer, withStyles } from '@material-ui/core'
+
 import qChat_Icon from '../../imgs/icons/qChat_Icon.svg'
-import { withStyles } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
+
 import SideBarLogo from './SideBarLogo'
 import SideBarRooms from './SideBarRooms'
 
@@ -19,6 +20,9 @@ const styling = themes => ({
     paper: {
         width: '410px',
         backgroundColor: '#343A40',
+        [themes.breakpoints.down('sm')]: {
+            width: '360px',
+        },
     },
 })
 

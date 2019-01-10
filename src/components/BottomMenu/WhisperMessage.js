@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Fade from '@material-ui/core/Fade'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import { withStyles } from '@material-ui/core'
+
+import { Fade, Paper, Grid, Typography, withStyles } from '@material-ui/core'
 
 const styling = theme => ({
     whisperMessageBox: {
@@ -57,7 +54,15 @@ class WhisperMessage extends Component {
                             background: username === 'Argenis Rodriguez' ? '#455F77' : '#4A545D',
                         }}>
                         <Typography className={classes.whisperUsername}>
-                            {username} <span className={classes.whisperDate}>{date}</span>
+                            {username}
+                            <span className={classes.whisperDate}>
+                                {date.calendar(null, {
+                                    sameDay: 'h:mma',
+                                    lastDay: '[Yesterday]',
+                                    lastWeek: `[${date.fromNow()}]`,
+                                    sameElse: `[${date.fromNow()}]`,
+                                })}
+                            </span>
                         </Typography>
                         <Typography className={classes.whisperMessage}>{message}</Typography>
                     </Grid>
