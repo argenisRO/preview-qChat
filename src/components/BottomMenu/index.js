@@ -4,7 +4,7 @@ import { v4 } from 'uuid'
 
 import { AppBar, Toolbar, Slide, withStyles } from '@material-ui/core'
 
-import NoFriend from './NoFriend'
+import NoFriend from './noFriend'
 import FriendsBubble from './FriendsBubble'
 
 const styling = theme => ({

@@ -3,16 +3,17 @@ import React, { Component } from 'react'
 import TopMenu from './TopMenu'
 import FriendsBar from './BottomMenu'
 import LoadingScreen from './LoadingScreen'
+import CenterContent from './CenterContent'
 
 class Root extends Component {
     state = {
-        loading: false,
+        loading: false
     }
 
     componentDidMount() {
         setTimeout(() => {
             this.setState({ loading: !this.state.loading })
-        }, 2600)
+        }, 1300)
     }
 
     render() {
@@ -21,6 +22,7 @@ class Root extends Component {
         ) : (
             <React.Fragment>
                 <TopMenu />
+                <CenterContent />
                 <FriendsBar />
             </React.Fragment>
         )
