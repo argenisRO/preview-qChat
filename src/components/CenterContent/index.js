@@ -43,7 +43,7 @@ class CenterContent extends Component {
         return (
             <Grid container justify="center" className={classes.root}>
                 <Grid container wrap="nowrap" direction="column" className={classes.root2}>
-                    <Grid container item style={{ minHeight: '224px', borderRadius: '10px' }}>
+                    <Grid container item style={{ minHeight: '220px', borderRadius: '10px' }}>
                         <ChatTitle />
                     </Grid>
                     <Grid
