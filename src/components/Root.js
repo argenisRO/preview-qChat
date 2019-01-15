@@ -7,13 +7,13 @@ import CenterContent from './CenterContent'
 
 class Root extends Component {
     state = {
-        loading: false
+        loading: false,
     }
 
     componentDidMount() {
         setTimeout(() => {
             this.setState({ loading: !this.state.loading })
-        }, 1300)
+        }, 100)
     }
 
     render() {

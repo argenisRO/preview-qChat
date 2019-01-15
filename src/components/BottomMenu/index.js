@@ -8,14 +8,14 @@ import NoFriend from './noFriend'
 import FriendsBubble from './FriendsBubble'
 
 const styling = theme => ({
-    friendsBar: {
+    root: {
         top: 'auto',
-        bottom: 0,
-        zIndex: 1500,
+        bottom: '0px',
     },
     toolbar: {
         background: '#343A40',
         minHeight: '50px',
+        bottom: '0px',
     },
     userChip: {
         margin: '5px',
@@ -71,7 +71,7 @@ class BottomMenu extends Component {
 
         return (
             <Slide direction="up" in mountOnEnter unmountOnExit>
-                <AppBar position="fixed" color="primary" className={classes.friendsBar}>
+                <AppBar position="absolute" className={classes.root}>
                     <Toolbar variant="dense" className={classes.toolbar}>
                         {this.state.onlineUsers.length > 0 ? (
                             this.state.onlineUsers.map(User => {

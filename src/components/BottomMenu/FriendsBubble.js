@@ -143,7 +143,7 @@ class FriendsBubble extends Component {
                 messages: [
                     ...this.state.messages,
                     {
-                        username: 'Eris Cortez',
+                        username: 'Test User',
                         message: 'Test Notification',
                         date: moment(),
                         watched: this.state.opened,

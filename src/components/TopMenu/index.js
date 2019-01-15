@@ -22,12 +22,10 @@ class TopMenu extends Component {
 
         return (
             <Slide direction="down" in mountOnEnter unmountOnExit>
-                <AppBar position="relative" color="primary">
+                <AppBar position="absolute">
                     <Toolbar variant="dense" className={classes.menuBar}>
                         <SideBar />
-                        <Typography variant="h6" color="inherit">
-                            qChat
-                        </Typography>
+                        <Typography variant="h6">qChat</Typography>
                     </Toolbar>
                 </AppBar>
             </Slide>
