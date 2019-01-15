@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Grid, withStyles } from '@material-ui/core'
+import { Grid, withStyles, Paper } from '@material-ui/core'
 
 import ChatTitle from './ChatTitle'
 import ChatBox from './ChatBox'
@@ -12,9 +12,24 @@ const styling = theme => ({
     },
     root2: {
         width: '80%',
-        height: '100%',
         backgroundColor: '#253646',
         padding: '60px 0px 50px 0px',
+        [theme.breakpoints.up('sm')]: {
+            // sm: 960px
+            width: '100%',
+        },
+        [theme.breakpoints.up('md')]: {
+            // md: 960px or larger
+            width: 920,
+        },
+        [theme.breakpoints.up('lg')]: {
+            // lg: 1280px or larger
+            width: 1170,
+        },
+        [theme.breakpoints.up('xl')]: {
+            // xl: 1920px or larger
+            width: 1366,
+        },
     },
 })
 

@@ -91,7 +91,7 @@ class ChatTitle extends Component {
     render() {
         const { classes } = this.props
         return (
-            <Paper className={classes.root} id="test">
+            <Paper className={classes.root}>
                 <Grid container spacing={8} style={{ height: '100%' }}>
                     <Grid item>
                         <Tooltip title="Exit Channel" placement="top">
