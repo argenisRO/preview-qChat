@@ -38,6 +38,11 @@ const styling = theme => ({
         width: 28,
         height: 28,
     },
+    chatTitleDescription: {
+        display: 'inline-block',
+        height: '1em',
+        overflow: 'hidden',
+    },
 })
 
 const status = {
@@ -92,7 +97,7 @@ class ChatTitle extends Component {
         const { classes } = this.props
         return (
             <Paper className={classes.root}>
-                <Grid container spacing={8} style={{ height: '100%' }}>
+                <Grid container spacing={8}>
                     <Grid item>
                         <Tooltip title="Exit Channel" placement="top">
                             <IconButton>
@@ -125,7 +130,10 @@ class ChatTitle extends Component {
                                 <Typography style={{ fontSize: 12 }} gutterBottom>
                                     Public
                                 </Typography>
-                                <Typography color="secondary" gutterBottom>
+                                <Typography
+                                    className={classes.chatTitleDescription}
+                                    color="secondary"
+                                    gutterBottom>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales
                                     ultricies velit, non sollicitudin velit lacinia aliquet. Nam lacinia
                                     aliquot.
@@ -133,9 +141,8 @@ class ChatTitle extends Component {
                                 <Grid container style={{ marginTop: '10px' }}>
                                     {this.state.connectedMembers.map((member, id) => {
                                         return (
-                                            <Tooltip title={member.fullName} placement="top">
+                                            <Tooltip key={id * 1.2} title={member.fullName} placement="top">
                                                 <img
-                                                    key={id}
                                                     src={member.img}
                                                     alt={member.fullName}
                                                     className={classes.chatroomUserImg}
@@ -178,12 +185,12 @@ class ChatTitle extends Component {
                             </Grid>
                         </Grid>
                         <Grid item>
-                            <Tooltip title="Mute Sounds" placement="top">
+                            <Tooltip title="Mute" placement="top">
                                 <IconButton className={classes.topRightSettings}>
                                     <img src={EditVolume_Icon} alt="Volume Control" />
                                 </IconButton>
                             </Tooltip>
-                            <Tooltip title="Chatroom Settings" placement="top">
+                            <Tooltip title="Settings" placement="top">
                                 <IconButton className={classes.topRightSettings}>
                                     <img src={EditSettings_Icon} alt="Edit Settings" />
                                 </IconButton>

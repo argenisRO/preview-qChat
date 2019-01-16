@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as moment from 'moment'
 
-import WhisperMessage from './WhisperMessage'
-
 import AddFriend_Icon from '../../imgs/icons/AddFriend_Icon.svg'
 import Enlarge_Icon from '../../imgs/icons/Enlarge_Icon.svg'
 import Exit_Icon from '../../imgs/icons/Exit_Icon.svg'
@@ -22,6 +20,7 @@ import {
     InputBase,
     Badge,
 } from '@material-ui/core'
+import MessageBox from '../General/MessageBox'
 
 const styling = theme => ({
     userChip: {
@@ -124,6 +123,7 @@ class FriendsBubble extends Component {
 
     handleSendMessage = e => {
         e.preventDefault()
+        if (this.state.writtenMessage.length <= 0) return
         // Execute Send Message Here <--
         /* 
             The following function is only for testing purposes 
@@ -138,6 +138,11 @@ class FriendsBubble extends Component {
                 },
             ],
         })
+        //  @username
+        //  @img
+        //  @status
+        //  @message
+        //  @date
         setTimeout(() => {
             this.setState({
                 messages: [
@@ -248,14 +253,7 @@ class FriendsBubble extends Component {
                                     <Grid item xs={12}>
                                         <Paper className={classes.whisperChatBoxOuter} elevation={0} square>
                                             {this.state.messages.map((message, id) => {
-                                                return (
-                                                    <WhisperMessage
-                                                        key={id}
-                                                        TransitionProps={TransitionProps}
-                                                        WhisperMessageSent={message}
-                                                        updater={this.updateWatchedMessage}
-                                                    />
-                                                )
+                                                return <MessageBox key={id} info={message} small />
                                             })}
                                         </Paper>
                                         {/* Input Field */}

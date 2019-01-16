@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Grid, withStyles, Paper } from '@material-ui/core'
+import { Grid, withStyles } from '@material-ui/core'
 
 import ChatTitle from './ChatTitle'
 import ChatBox from './ChatBox'
