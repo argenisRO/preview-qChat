@@ -15,7 +15,12 @@ class Root extends Component {
     componentDidMount() {
         setTimeout(() => {
             this.setState({ loading: !this.state.loading })
-        }, 100)
+        }, 2500)
+    }
+
+    testLogin = e => {
+        e.preventDefault()
+        this.setState({ loggedIn: !this.state.loggedIn })
     }
 
     render() {
@@ -25,8 +30,7 @@ class Root extends Component {
             <React.Fragment>
                 {!this.state.loggedIn ? (
                     <React.Fragment>
-                        <TopMenu />
-                        <Registration />
+                        <Registration test={this.testLogin} />
                     </React.Fragment>
                 ) : (
                     <React.Fragment>

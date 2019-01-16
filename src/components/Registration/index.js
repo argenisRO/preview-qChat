@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, Grid, FormControl, InputLabel, InputBase, Typography } from '@material-ui/core'
+import { withStyles, Grid, Typography, Button } from '@material-ui/core'
 import qChatBlank_Icon from '../../imgs/icons/qChatBlank_Icon.svg'
+import RegisterInputs from './RegisterInputs'
+import Slogan from './Slogan'
 
 const styling = theme => ({
-    root: {
+    pageContainer: {
         height: '100vh',
     },
-    root2: {
+    root: {
         width: '80%',
+        padding: '60px 0px',
         backgroundColor: '#253646',
         [theme.breakpoints.up('sm')]: {
             // sm: 960px
@@ -16,7 +19,7 @@ const styling = theme => ({
         },
         [theme.breakpoints.up('md')]: {
             // md: 960px or larger
-            width: 920,
+            width: '100%',
         },
         [theme.breakpoints.up('lg')]: {
             // lg: 1280px or larger
@@ -27,26 +30,28 @@ const styling = theme => ({
             width: 1366,
         },
     },
-    textInputRoot: {
-        'label + &': {
-            marginTop: theme.spacing.unit * 2,
-        },
-    },
-    textInputControl: {
-        width: '250px',
-        padding: '10px 12px',
-        color: 'black',
-        borderRadius: 20,
-        backgroundColor: '#4A545D',
-        transition: theme.transitions.create(['box-shadow']),
-
-        '&:focus': {
-            boxShadow: '0 0 0 2px rgba(112,112,112,.25)',
-        },
+    logo: {
+        width: '265px',
+        height: '265px',
+        marginRight: '100px',
     },
     separator: {
-        width: '100%',
-        border: '0.5px solid #484D52',
+        margin: '10px 40px 10px 40px',
+        border: '1px solid #484D52',
+    },
+    signupButton: {
+        width: '170px',
+        height: '45px',
+        background: '#2E4B65',
+        '&:hover': {
+            background: '#376D9D',
+        },
+    },
+    loginButton: {
+        color: '#658AE1',
+        fontSize: 10,
+        marginTop: 10,
+        cursor: 'pointer',
     },
 })
 
@@ -56,46 +61,77 @@ class Registration extends Component {
     }
 
     state = {
-        inputNames: ['Email Address', 'Username', 'Password', 'Confirm Password', 'Display Name'],
+        'Email Address': { title: 'Email Address', message: '', password: false },
+        Username: { title: 'Username', message: '', password: false },
+        Password: { title: 'Password', message: '', password: true },
+        'Confirm Password': { title: 'Confirm Password', message: '', password: true },
+        'Display Name': { title: 'Display Name', message: '', password: false },
+    }
+
+    handleChange = event => {
+        event.preventDefault()
+        event.persist()
+        const { name, value } = event.target
+        this.setState({ [name]: { ...this.state[name], message: value } })
     }
 
     render() {
         const { classes } = this.props
         return (
-            <Grid container justify="center" className={classes.root}>
-                <Grid container justify="center" alignItems="center" className={classes.root2}>
-                    <Grid item>
-                        <img
-                            width={265}
-                            height={265}
-                            src={qChatBlank_Icon}
-                            alt=""
-                            style={{ marginRight: '100px' }}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <Grid container direction="column">
-                            <hr className={classes.separator} />
-                            {this.state.inputNames.map(input => {
-                                return (
-                                    <Grid item>
-                                        <FormControl className={classes.margin}>
-                                            <InputLabel shrink style={{ left: '15px' }}>
-                                                <Typography>{input}</Typography>
-                                            </InputLabel>
-                                            <InputBase
-                                                classes={{
-                                                    root: classes.textInputRoot,
-                                                    input: classes.textInputControl,
-                                                }}
-                                            />
-                                        </FormControl>
-                                    </Grid>
-                                )
-                            })}
+            <Grid container justify="center" className={classes.pageContainer}>
+                <Grid container justify="center" alignItems="center" className={classes.root}>
+                    {/* <form style={{ width: '100%' }}> */}
+                    <Grid container direction="column" alignItems="center" item>
+                        <Grid item justify="center" style={{ marginBottom: '2%' }}>
+                            <Slogan />
+                        </Grid>
+                        <Grid item style={{ width: '49%' }}>
                             <hr className={classes.separator} />
                         </Grid>
+                        <Grid container item justify="center" alignItems="center">
+                            <Grid item>
+                                <img className={classes.logo} src={qChatBlank_Icon} alt="qChat Icon" />
+                            </Grid>
+                            <Grid item>
+                                <Grid container direction="column">
+                                    {Object.values(this.state).map((inputBox, key) => {
+                                        const { title, password } = inputBox
+                                        return (
+                                            <RegisterInputs
+                                                key={key}
+                                                name={title}
+                                                title={title}
+                                                handleChange={this.handleChange}
+                                                password={password}
+                                            />
+                                        )
+                                    })}
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item style={{ width: '49%' }}>
+                            <hr className={classes.separator} />
+                        </Grid>
+                        <Grid
+                            container
+                            direction="column"
+                            alignItems="flex-end"
+                            item
+                            style={{ width: '43%' }}>
+                            <Button
+                                type="button"
+                                color="primary"
+                                className={classes.signupButton}
+                                onClick={this.props.test}
+                                variant="contained">
+                                Sign Up
+                            </Button>
+                            <Typography className={classes.loginButton}>
+                                Already have an account? Log in instead
+                            </Typography>
+                        </Grid>
                     </Grid>
+                    {/* </form> */}
                 </Grid>
             </Grid>
         )
