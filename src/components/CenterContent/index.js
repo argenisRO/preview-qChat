@@ -8,7 +8,6 @@ import ChatBox from './ChatBox'
 const styling = theme => ({
     root: {
         height: '100vh',
-        backgroundColor: '#263238',
     },
     root2: {
         width: '80%',
