@@ -21,8 +21,23 @@
   </head>
   <body>
     <noscript>
-      <div id="nsRoot">
-        You need to enable JavaScript.
+      <div id="root-container">
+      <img class="logo" src="%PUBLIC_URL%/favicon/favicon.svg"/>
+      <div class="box-body">
+        <div class="box-body-container">
+          <span class="box-body-title">Please Enable Javascript</span>
+          <div class="box-body-desc-container">
+            <p class="box-body-desc" style="font-size: .6em">Unfortunately qChat requires Javascript to function.</p>
+            <hr class="separator"/>
+            <p class="box-body-desc">In order for us to give you the best user experience ever, we require Javascript to be enabled, otherwise this would be a really ugly application. Most browsers come with Javascript automatically enabled and if you actually meant to disable it, please know that nothing wrong comes from having Javascript enabled for qChat. We are friendly!</p>
+          </div>
+          <div class="box-body-button-container">
+            <a href="https://www.enable-javascript.com/" class="button-text">
+              <span>Need Help? Learn how to enable Javascript</span>
+            </a> 
+          </div>
+        </div>
+      </div>
       </div>
     </noscript>
     <div id="main"></div>
