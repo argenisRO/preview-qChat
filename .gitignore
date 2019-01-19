@@ -1,0 +1,7 @@
+node_modules
+build
+.vscode
+
+__pycache__/
+*.py[cod]
+*.sqlite3
